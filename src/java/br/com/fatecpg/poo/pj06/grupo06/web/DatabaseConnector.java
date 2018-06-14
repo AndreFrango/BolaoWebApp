@@ -24,7 +24,7 @@ public class DatabaseConnector {
         con.close();
     }
     
-    public static ArrayList<Object> executeQuery(String SQL, Object[] parameters) throws Exception{
+    public static ArrayList<Object[]> executeQuery(String SQL, Object[] parameters) throws Exception{
         Class.forName(DRIVER);
         Connection con = DriverManager.getConnection(URL, USER, PASS);
         PreparedStatement stmt = con.prepareStatement(SQL);
@@ -32,7 +32,7 @@ public class DatabaseConnector {
             stmt.setObject(i+1, parameters[i]);
         }
         ResultSet rs = stmt.executeQuery();
-        ArrayList<Object> list = new ArrayList<>();
+        ArrayList<Object[]> list = new ArrayList<>();
         while (rs.next()){
             Object[] row = new Object[rs.getMetaData().getColumnCount()];
             for (int i=1; i<=rs.getMetaData().getColumnCount(); i++){
