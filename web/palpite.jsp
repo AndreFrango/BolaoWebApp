@@ -4,16 +4,29 @@
     Author     : janaina
 --%>
 
+<%@page import="br.com.fatecpg.poo.pj06.grupo06.db.Jogo"%>
+<%@page import="br.com.fatecpg.poo.pj06.grupo06.db.Time"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="br.com.fatecpg.poo.pj06.grupo06.db.Rodada"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    int numberOfRows = 0;
+    int lastRowCells = 0;
     ArrayList<Rodada> rodadas = Rodada.getRodadaList();
     String rodadaSelecionada="Escolha uma rodada nos botões acima";
+    ArrayList<Jogo> listaJogos = null;
+    HashMap<String, String> times = Time.getTimesHashMap();
     if (request.getParameter("descricaoRodada")!=null){
         rodadaSelecionada = request.getParameter("descricaoRodada");
-        //TODO Carregar lista de jogos
+        listaJogos = Jogo.getJogosList(Integer.parseInt(request.getParameter("idRodada")));
+        numberOfRows = listaJogos.size()/4;
+        lastRowCells = listaJogos.size()%4;
+        if(lastRowCells>0){
+            numberOfRows++;
+        }
     }
+    
 %>
 <!DOCTYPE html>
 <html>
@@ -44,101 +57,33 @@
    			
        <center><p><%=rodadaSelecionada%></p></center>
        
-
-  
-<div class="row">
+<%for(int i=1; i<=numberOfRows; i++){%>  
+    <div class="row">
+    <%for (int j=1; j <= (i==numberOfRows&&lastRowCells>0?lastRowCells:4);j++){%>
 <center>
 <form>
  <div class="col-sm-3 col-md-3">
+     <h5><%=listaJogos.get(i*j-1).getData().toLocaleString()%></h5>
   	<div class="thumbnail">
-  		<img src="img/russia.png" alt="...">
+            <img src="<%=times.get(listaJogos.get(i*j-1).getTimeA())%>" alt="...">
             <div class="caption">
-               <center><h4>Rússia</h4>
-                 <input type="number" name="placarA"/> <!--<button type="submit" class="btn btn-sm btn-success">OK</button>--></center>
+               <center><h4><%=listaJogos.get(i*j-1).getTimeA()%></h4>
+                 <input type="number" name="placarA"/></center>
             </div>
-               <br/>
-            <img src="img/arabia-saudita.png" alt=""/>
+                <h4>X</h4>
+            <img src="<%=times.get(listaJogos.get(i*j-1).getTimeB())%>" alt=""/>
               	<div class="caption">
-                 	<center><h4>Arábia Saudita</h4>
+                 	<center><h4><%=listaJogos.get(i*j-1).getTimeB()%></h4>
                         <input type="number" name="placarB"/> <br/><br/><button type="submit" class="btn btn-sm btn-success">Enviar Palpite</button></center>
               </div>
   	</div>
 </div>
 </form>
 </center>
+<%}%>
 
-<center>
-<form>
- <div class="col-sm-3 col-md-3">
-  	<div class="thumbnail">
-            <img src="img/egito.png" alt=""/>
-              <div class="caption">
-                <center><h4>Egito</h4> <!--<button type="submit" class="btn btn-sm btn-success">OK</button>--></center>
-                 <input type="number" name="placarA"/>
-              </div>
-               <br/>
-            <img src="img/uruguai.png" alt="...">
-              	<div class="caption">
-               <center><h4>Uruguai</h4>
-                 <input type="number" name="placarB"/> <br/><br/><button type="submit" class="btn btn-sm btn-success">Enviar Palpite</button></center>
-              </div>
-  	</div>
-    
-</div>
-</form>
-</center>
-    
-<center>
-<form>
- <div class="col-sm-3 col-md-3">
-  	<div class="thumbnail">
-            <img src="img/marrocos.png" alt=""/>
-              <div class="caption">
-                <center><h4>Marrocos</h4> <!--<button type="submit" class="btn btn-sm btn-success">OK</button>--></center>
-                 <input type="number" name="placarA"/>
-              </div>
-               <br/>
-            <img src="img/irã.png" alt="...">
-              	<div class="caption">
-               <center><h4>Irã</h4>
-                 <input type="number" name="placarB"/> <br/><br/><button type="submit" class="btn btn-sm btn-success">Enviar Palpite</button></center>
-              </div>
-  	</div>
-    
-</div>
-</form>
-</center>
-    
-<center>
-<form>
- <div class="col-sm-3 col-md-3">
-  	<div class="thumbnail">
-            <img src="img/portugal.png" alt=""/>
-              <div class="caption">
-                <center><h4>Portugal</h4> <!--<button type="submit" class="btn btn-sm btn-success">OK</button>--></center>
-                 <input type="number" name="placarA"/>
-              </div>
-               <br/>
-            <img src="img/espanha.png" alt="...">
-              	<div class="caption">
-               <center><h4>Espanha</h4>
-                 <input type="number" name="placarB"/> <br/><br/><button type="submit" class="btn btn-sm btn-success">Enviar Palpite</button></center>
-              </div>
-  	</div>
-    
-</div>
-</form>
-</center>
-    
-    
-    
-    
-    
-    
-    
-    
-    
 </div> <!--row-->
+<%}%>
      </div></div></div>
 
 </body>
