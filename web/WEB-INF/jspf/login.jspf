@@ -1,0 +1,67 @@
+<div id="loginModal" class="modal fade" role="dialog">  
+      <div class="modal-dialog">  
+   <!-- Modal content-->  
+           <div class="modal-content">  
+                <div class="modal-header">  
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                     <h4 class="modal-title">Acesso</h4>  
+                </div>  
+                <div class="modal-body"> 
+                    <form action="post">
+                     <label>Login</label>  
+                     <input type="text" name="username" id="username" class="form-control" />  
+                     <br />  
+                     <label>Senha</label>  
+                     <input type="password" name="password" id="password" class="form-control" />  
+                     <br />  
+                     <button type="submit" name="login_button" id="login_button" class="btn btn-warning">Login</button>  
+                    </form>
+                </div>  
+           </div>  
+      </div>  
+ </div>  
+ <script>  
+ $(document).ready(function(){  
+      $('#login_button').click(function(){  
+           var username = $('#username').val();  
+           var password = $('#password').val();  
+           if(username != '' && password != '')  
+           {  
+                $.ajax({  
+                     url:"",  
+                     method:"POST",  
+                     data: {username:username, password:password},  
+                     success:function(data)  
+                     {  
+                          //alert(data);  
+                          if(data == 'No')  
+                          {  
+                               alert("Wrong Data");  
+                          }  
+                          else  
+                          {  
+                               //$('#loginModal').hide();  
+                               location.reload();  
+                          }  
+                     }  
+                });  
+           }  
+           else  
+           {  
+                alert("Both Fields are required");  
+           }  
+      });  
+      $('#logout').click(function(){  
+           var action = "logout";  
+           $.ajax({  
+                url:"logon.php",  
+                method:"POST",  
+                data:{action:action},  
+                success:function()  
+                {  
+                     location.reload();  
+                }  
+           });  
+      });  
+ });  
+ </script>
