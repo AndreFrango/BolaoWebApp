@@ -58,3 +58,41 @@ CREATE TABLE PALPITE(
 );
 
 INSERT INTO PALPITE VALUES (2, 1, 2, 0); --Usuário Carlos, jogo RUS x ARA, placar 2x0
+
+CREATE TABLE TIME(
+NOME_TIME VARCHAR(30) NOT NULL PRIMARY KEY,
+PATH_IMAGEM VARCHAR(50) NOT NULL
+);
+
+INSERT INTO TIME VALUES ('Alemanha', 'img/alemanha.png');
+INSERT INTO TIME VALUES ('Arábia Saudita', 'img/arabia-saudita.png');
+INSERT INTO TIME VALUES ('Argentina', 'img/argentina.png');
+INSERT INTO TIME VALUES ('Austrália', 'img/australia.png');
+INSERT INTO TIME VALUES ('Bélgica', 'img/belgica.png');
+INSERT INTO TIME VALUES ('Brasil', 'img/brasil.png');
+INSERT INTO TIME VALUES ('Colômbia', 'img/colombia.png');
+INSERT INTO TIME VALUES ('Coréia do Sul', 'img/coreia-sul.png');
+INSERT INTO TIME VALUES ('Costa Rica', 'img/costa-rica.png');
+INSERT INTO TIME VALUES ('Croácia', 'img/croacia.png');
+INSERT INTO TIME VALUES ('Dinamarca', 'img/dinamarca.png');
+INSERT INTO TIME VALUES ('Egito', 'img/egito.png');
+INSERT INTO TIME VALUES ('Espanha', 'img/espanha.png');
+INSERT INTO TIME VALUES ('França', 'img/franca.png');
+INSERT INTO TIME VALUES ('Inglaterra', 'img/inglaterra.png');
+INSERT INTO TIME VALUES ('Irã', 'img/irã.png');
+INSERT INTO TIME VALUES ('Islândia', 'img/islandia.png');
+INSERT INTO TIME VALUES ('Japão', 'img/japao.png');
+INSERT INTO TIME VALUES ('Marrocos', 'img/marrocos.png');
+INSERT INTO TIME VALUES ('México', 'img/mexico.png'); --TODO Baixar imagem da bandeira do México
+INSERT INTO TIME VALUES ('Nigéria', 'img/nigeria.png');
+INSERT INTO TIME VALUES ('Panamá', 'img/panamá.png');
+INSERT INTO TIME VALUES ('Peru', 'img/peru.png');
+INSERT INTO TIME VALUES ('Polônia', 'img/polonia.png');
+INSERT INTO TIME VALUES ('Portugal', 'img/portugal.png');
+INSERT INTO TIME VALUES ('Rússia', 'img/russia.png');
+INSERT INTO TIME VALUES ('Senegal', 'img/senegal.png');
+INSERT INTO TIME VALUES ('Sérvia', 'img/servia.png');
+INSERT INTO TIME VALUES ('Suécia', 'img/suecia.png');
+INSERT INTO TIME VALUES ('Suiça', 'img/suiça.png');
+INSERT INTO TIME VALUES ('Tunísia', 'img/tunisia.png');
+INSERT INTO TIME VALUES ('Uruguai', 'img/uruguai.png');
