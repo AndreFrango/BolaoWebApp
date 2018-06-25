@@ -27,8 +27,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav"> 
         <li><a href="home.jsp">Página Inicial</a></li>
-        <li><a href="palpite.html">Palpites</a></li>
-        <li><a href="admin.html">Área Administrativa</a></li> 
+        <li><a href="palpite.jsp">Palpites</a></li>
+        <li><a href="admin.jsp">Área Administrativa</a></li> 
       </ul>
      
       <ul class="nav navbar-nav navbar-right">

@@ -8,16 +8,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <title>Bolão</title>
-        
-
     </head>
     <%@include file="WEB-INF/jspf/header.jspf" %>
     <body>
-        
-
         <div class="container-fluid text-center">    
           <div class="row content">
 
@@ -52,9 +47,8 @@
           </div>
         </div>
     </body>
-    <%@include file="WEB-INF/jspf/footer.jspf" %>
+<%@include file="WEB-INF/jspf/footer.jspf" %>
 </html>
-
 <%@include file="WEB-INF/jspf/login.jspf" %>
 
    
