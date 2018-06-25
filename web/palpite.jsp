@@ -4,7 +4,17 @@
     Author     : janaina
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="br.com.fatecpg.poo.pj06.grupo06.db.Rodada"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    ArrayList<Rodada> rodadas = Rodada.getRodadaList();
+    String rodadaSelecionada="Escolha uma rodada nos botões acima";
+    if (request.getParameter("descricaoRodada")!=null){
+        rodadaSelecionada = request.getParameter("descricaoRodada");
+        //TODO Carregar lista de jogos
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +24,17 @@
     <%@include file="WEB-INF/jspf/header.jspf" %>
     <body>
        
-        <div class="container-fluid text-center">    
+        <div class="container-fluid text-center"> 
+            <div name="rodadas">
+                
+                <%for(Rodada r:rodadas){%>
+                    <form>
+                        <input type="hidden" name="idRodada" value="<%=r.getId()%>"/>
+                        <input class="btn btn-primary" type="submit" name="descricaoRodada" value="<%=r.getDescricaoRodada()%>"/>
+                    </form>
+                <%}%>
+                
+            </div>
   <div class="row content">
  
       <!-- Centro -->
@@ -22,7 +42,7 @@
       <center><h1>Palpites</h1></center>
       <br/>
    			
-       <center><p>Fase de Grupos - Rodada 1 de 3 </p></center>
+       <center><p><%=rodadaSelecionada%></p></center>
        
 
   
@@ -119,7 +139,7 @@
     
     
 </div> <!--row-->
-     
+     </div></div></div>
 
 </body>
 <%@include file="WEB-INF/jspf/footer.jspf" %>
