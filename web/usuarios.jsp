@@ -53,8 +53,8 @@
                             <b>Data Cadastro</b><input type="date" name="data" class="form-control"/> <br/>
                             <b>Login</b><input type="text" name="login" class="form-control"/> <br/>
                             <b>Role</b> <select name="role">
-                             <option value="admin">admin</option>
-                             <option value="torcedor">torcedor</option>
+                                <option value="admin">admin</option>
+                                <option value="torcedor">torcedor</option>
                             </select><br/>
                             <b>Pontuação</b><input type="text" name="pontuacao" class="form-control"/> <br/>
                             

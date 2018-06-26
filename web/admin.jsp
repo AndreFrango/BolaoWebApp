@@ -10,8 +10,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Área Administrativa</title>
     </head>
-    <%@include file="WEB-INF/jspf/header.jspf" %>
-    
+      <%@include file="WEB-INF/jspf/cabecalho.jspf" %>
+     <%if(session.getAttribute("me.login")==null){%>
+    <center><h2>Efetue o login</h2></center> <!-- Corrigir-->
+        <%}else{%>
     <body>
         <center>
             
@@ -27,6 +29,6 @@
     </body>
      <%@include file="WEB-INF/jspf/footer.jspf" %>
 </html>
-
+<%}%>
 
  
