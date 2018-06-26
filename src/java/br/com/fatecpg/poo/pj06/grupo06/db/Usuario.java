@@ -2,6 +2,7 @@ package br.com.fatecpg.poo.pj06.grupo06.db;
 
 import br.com.fatecpg.poo.pj06.grupo06.web.DatabaseConnector;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 
 public class Usuario {
@@ -94,6 +95,26 @@ public class Usuario {
     }
     
     
+    public static ArrayList<Usuario> getUsuarios() throws Exception{
+        String SQL = "SELECT * FROM USUARIO";   
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        ArrayList<Object[]> list = DatabaseConnector.executeQuery(SQL, new Object[]{});
+            for(int i= 0 ; i < list.size(); i ++) {
+                Object row [] = list.get(0);
+                Usuario u = new Usuario((int)row[0]
+                        ,(String)row[1]
+                        ,(Timestamp)row[2]
+                        ,(String)row[3]
+                        ,(int)row[4]
+                        ,(int)row[5]
+                        ,(String)row[6] );
+                
+               usuarios.add(u);
+            }
+        return usuarios;
+    }
+    
+    
     
     public static Usuario validarUsuario(String login, String senha) throws Exception{
         String Query = "SELECT * FROM Usuario WHERE login = ? AND senha = ?";
@@ -105,6 +126,29 @@ public class Usuario {
         }else{
             return null;
         }
+    }
+    
+     public static void addUsuario(String nome, String data, String login, int senha, int pontuacao, String role) throws Exception{
+        String SQL = "INSERT INTO VALUES("
+                + "default"
+                + ",  ?"
+                + ",  ?"
+                + ",  ?"
+                + ",  ?"
+                + ",  ?"
+                + ",  ?"
+                + ")";
+        Object parameters[] = {nome, data, login, senha, pontuacao, role};
+        DatabaseConnector.executeCommand(SQL, parameters);
+    
+    }
+     
+     
+     public static void removeUsuario(int id) throws Exception{
+        String SQL = "DELETE FROM USUARIO WHERE ID = ? " ;              
+        Object parameters[] = {id};
+        DatabaseConnector.executeCommand(SQL, parameters);
+    
     }
     
 }

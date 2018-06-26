@@ -3,7 +3,6 @@
     Created on : 24/06/2018, 22:53:45
     Author     : janaina
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +11,7 @@
         <title>Área Administrativa</title>
     </head>
     <%@include file="WEB-INF/jspf/header.jspf" %>
+    
     <body>
         <center>
             
