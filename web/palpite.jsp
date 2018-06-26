@@ -1,9 +1,5 @@
-<%-- 
-    Document   : palpite
-    Created on : 24/06/2018, 22:53:10
-    Author     : janaina
---%>
-
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.sql.Timestamp"%>
 <%@page import="br.com.fatecpg.poo.pj06.grupo06.db.Jogo"%>
 <%@page import="br.com.fatecpg.poo.pj06.grupo06.db.Time"%>
 <%@page import="java.util.HashMap"%>
@@ -13,20 +9,22 @@
 <%
     int numberOfRows = 0;
     int lastRowCells = 0;
+    int idRodada = 1;
     ArrayList<Rodada> rodadas = Rodada.getRodadaList();
-    String rodadaSelecionada="Escolha uma rodada nos botões acima";
     ArrayList<Jogo> listaJogos = null;
     HashMap<String, String> times = Time.getTimesHashMap();
-    if (request.getParameter("descricaoRodada")!=null){
-        rodadaSelecionada = request.getParameter("descricaoRodada");
-        listaJogos = Jogo.getJogosList(Integer.parseInt(request.getParameter("idRodada")));
+    if (request.getParameter("idRodada")!=null){
+        idRodada = Integer.parseInt(request.getParameter("idRodada"));
+    }
+    String rodadaSelecionada = rodadas.get(idRodada-1).getDescricaoRodada();
+    listaJogos = Jogo.getJogosList(idRodada);
+    if(listaJogos!=null){
         numberOfRows = listaJogos.size()/4;
         lastRowCells = listaJogos.size()%4;
         if(lastRowCells>0){
             numberOfRows++;
         }
     }
-    
 %>
 <!DOCTYPE html>
 <html>
@@ -38,16 +36,7 @@
     <body>
        
         <div class="container-fluid text-center"> 
-            <div name="rodadas">
-                
-                <%for(Rodada r:rodadas){%>
-                    <form>
-                        <input type="hidden" name="idRodada" value="<%=r.getId()%>"/>
-                        <input class="btn btn-primary" type="submit" name="descricaoRodada" value="<%=r.getDescricaoRodada()%>"/>
-                    </form>
-                <%}%>
-                
-            </div>
+            
   <div class="row content">
  
       <!-- Centro -->
@@ -55,27 +44,50 @@
       <center><h1>Palpites</h1></center>
       <br/>
    			
-       <center><p><%=rodadaSelecionada%></p></center>
-       
+      <div class="row">
+          <div class="col-md-3 col-sm-3"></div>
+          <div class="col-md-1 col-sm-1">
+           <form>
+               <input type="hidden" name="idRodada" value="<%=(idRodada>1?idRodada-1:"")%>"/>
+           <input class="btn" type="submit" value="<<" <%=(idRodada==1?"disabled":"") %>/>
+          </div>
+           </form>
+           <div class="col-md-4 col sm-4"><h3 class="text-secondary text-center"><%=rodadaSelecionada%></h3></div>
+           <div class="col-md-1 col-sm-1">
+           <form>
+               <input type="hidden" name="idRodada" value="<%=(idRodada<8?idRodada+1:"")%>"/>
+                      <input class="btn" type="submit" value=">>" <%=(idRodada==8?"disabled":"") %>/>
+           </form>
+           </div>
+           <div class="col-md-3 col-sm-3"></div>
+       </div>
+       <%if(numberOfRows==0){%>
+       <h2 class="text-danger text-center">Os jogos desta fase ainda não foram definidos!</h2>
+       <%}%>
 <%for(int i=1; i<=numberOfRows; i++){%>  
     <div class="row">
-    <%for (int j=1; j <= (i==numberOfRows&&lastRowCells>0?lastRowCells:4);j++){%>
+    <%for (int j=1; j <= (i==numberOfRows&&lastRowCells>0?lastRowCells:4);j++){
+        Jogo jogo = listaJogos.get(i*j-1);
+    %>
 <center>
 <form>
  <div class="col-sm-3 col-md-3">
-     <h5><%=listaJogos.get(i*j-1).getData().toLocaleString()%></h5>
   	<div class="thumbnail">
-            <img src="<%=times.get(listaJogos.get(i*j-1).getTimeA())%>" alt="...">
+            <h4><%=jogo.getData().toLocaleString()%></h4>
+            <img src="<%=times.get(jogo.getTimeA())%>" alt="...">
             <div class="caption">
-               <center><h4><%=listaJogos.get(i*j-1).getTimeA()%></h4>
-                 <input type="number" name="placarA"/></center>
+               <center><h4><%=jogo.getTimeA()%></h4>
+                   <input type="number" name="placarA" <%=(jogo.getData().before(Timestamp.valueOf(LocalDateTime.now().plusHours(1)))?"disabled":"required") %>/></center>
             </div>
                 <h4>X</h4>
-            <img src="<%=times.get(listaJogos.get(i*j-1).getTimeB())%>" alt=""/>
+            <img src="<%=times.get(jogo.getTimeB())%>" alt=""/>
               	<div class="caption">
-                 	<center><h4><%=listaJogos.get(i*j-1).getTimeB()%></h4>
-                        <input type="number" name="placarB"/> <br/><br/><button type="submit" class="btn btn-sm btn-success">Enviar Palpite</button></center>
+                 	<center><h4><%=jogo.getTimeB()%></h4>
+                        <input type="number" name="placarB" <%=(jogo.getData().before(Timestamp.valueOf(LocalDateTime.now().plusHours(1)))?"disabled":"required") %>/> <br/><br/><button type="submit" class="btn btn-sm btn-success" <%=(jogo.getData().before(Timestamp.valueOf(LocalDateTime.now().plusHours(1)))?"disabled":"") %>>Enviar Palpite</button></center>
               </div>
+                        <%if(jogo.getPlacarTimeA()>=0 && jogo.getPlacarTimeB()>=0){%>
+                        <h4>Resultado:<br/> <%=jogo.getTimeA()+" "+jogo.getPlacarTimeA()+ " X " + jogo.getPlacarTimeB()+" "+ jogo.getTimeB()%></h4>
+                        <%}%>
   	</div>
 </div>
 </form>
