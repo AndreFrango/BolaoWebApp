@@ -1,3 +1,4 @@
+<%@page import="br.com.fatecpg.poo.pj06.grupo06.db.Palpite"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="br.com.fatecpg.poo.pj06.grupo06.db.Jogo"%>
@@ -10,21 +11,45 @@
     int numberOfRows = 0;
     int lastRowCells = 0;
     int idRodada = 1;
+    int idUsuario = 0;
+    if(session.getAttribute("me.id")!=null){
+        idUsuario= (int)session.getAttribute("me.id");
+    }
     ArrayList<Rodada> rodadas = Rodada.getRodadaList();
     ArrayList<Jogo> listaJogos = null;
     HashMap<String, String> times = Time.getTimesHashMap();
+    HashMap<Integer, Palpite> palpitesUsuario = new HashMap();
     if (request.getParameter("idRodada")!=null){
         idRodada = Integer.parseInt(request.getParameter("idRodada"));
     }
     String rodadaSelecionada = rodadas.get(idRodada-1).getDescricaoRodada();
     listaJogos = Jogo.getJogosList(idRodada);
-    if(listaJogos!=null){
+    
+    if(request.getParameter("subPalpite")!=null){
+        //TODO Inserir palpite
+        idUsuario= (int)session.getAttribute("me.id");
+        int idJogo=Integer.parseInt(request.getParameter("idJogo"));
+        int placarA = Integer.parseInt(request.getParameter("placarA"));
+        int placarB = Integer.parseInt(request.getParameter("placarB"));
+        Palpite p = Palpite.getPalpite(idUsuario, idJogo);
+        if (p==null){
+            Palpite.insertPalpite(idUsuario, idJogo, placarA, placarB, 0);
+        }else{
+            Palpite.updatePalpite(idUsuario, idJogo, placarA, placarB);
+        }
+    }
+    if(listaJogos!=null && idUsuario>0){
         numberOfRows = listaJogos.size()/4;
         lastRowCells = listaJogos.size()%4;
         if(lastRowCells>0){
             numberOfRows++;
         }
+        for (Jogo j:listaJogos){
+            palpitesUsuario.put(j.getIdJogo(), Palpite.getPalpite(idUsuario, j.getIdJogo()));
+        }
     }
+    
+    
 %>
 <!DOCTYPE html>
 <html>
@@ -32,11 +57,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Palpites</title>
     </head>
-    <%@include file="WEB-INF/jspf/header.jspf" %>
+    
     <body>
-       
+       <%@include file="WEB-INF/jspf/cabecalho.jspf" %>
         <div class="container-fluid text-center"> 
-            
+            <%if(session.getAttribute("me.login")!=null){%>
   <div class="row content">
  
       <!-- Centro -->
@@ -73,20 +98,23 @@
 <form>
  <div class="col-sm-3 col-md-3">
   	<div class="thumbnail">
+            <input type="hidden" name="idRodada" value="<%=idRodada%>"/>
+            <input type="hidden" name="idJogo" value="<%=jogo.getIdJogo()%>"/>
             <h4><%=jogo.getData().toLocaleString()%></h4>
             <img src="<%=times.get(jogo.getTimeA())%>" alt="...">
             <div class="caption">
                <center><h4><%=jogo.getTimeA()%></h4>
-                   <input type="number" name="placarA" <%=(jogo.getData().before(Timestamp.valueOf(LocalDateTime.now().plusHours(1)))?"disabled":"required") %>/></center>
+                   <input type="number" name="placarA" min="0" step="1" value="<%=(palpitesUsuario.get(jogo.getIdJogo())!=null?palpitesUsuario.get(jogo.getIdJogo()).getPalpiteTimeA():"")%>" <%=(jogo.getData().before(Timestamp.valueOf(LocalDateTime.now().plusHours(1)))?"disabled":"required") %>/></center>
             </div>
                 <h4>X</h4>
             <img src="<%=times.get(jogo.getTimeB())%>" alt=""/>
               	<div class="caption">
                  	<center><h4><%=jogo.getTimeB()%></h4>
-                        <input type="number" name="placarB" <%=(jogo.getData().before(Timestamp.valueOf(LocalDateTime.now().plusHours(1)))?"disabled":"required") %>/> <br/><br/><button type="submit" class="btn btn-sm btn-success" <%=(jogo.getData().before(Timestamp.valueOf(LocalDateTime.now().plusHours(1)))?"disabled":"") %>>Enviar Palpite</button></center>
+                        <input type="number" name="placarB" min="0" step="1" value="<%=(palpitesUsuario.get(jogo.getIdJogo())!=null?palpitesUsuario.get(jogo.getIdJogo()).getPalpiteTimeB():"")%>" <%=(jogo.getData().before(Timestamp.valueOf(LocalDateTime.now().plusHours(1)))?"disabled":"required") %>/> <br/><br/><button type="submit" name="subPalpite" class="btn btn-sm btn-success" <%=(jogo.getData().before(Timestamp.valueOf(LocalDateTime.now().plusHours(1)))?"disabled":"") %>>Enviar Palpite</button></center>
               </div>
                         <%if(jogo.getPlacarTimeA()>=0 && jogo.getPlacarTimeB()>=0){%>
                         <h4>Resultado:<br/> <%=jogo.getTimeA()+" "+jogo.getPlacarTimeA()+ " X " + jogo.getPlacarTimeB()+" "+ jogo.getTimeB()%></h4>
+                        <h4>Pontos: <%=(palpitesUsuario.get(jogo.getIdJogo())!=null?palpitesUsuario.get(jogo.getIdJogo()).getPontos():"0") %></h4>
                         <%}%>
   	</div>
 </div>
@@ -96,7 +124,11 @@
 
 </div> <!--row-->
 <%}%>
-     </div></div></div>
+     </div></div>
+        <%}else{%>
+        <h2 class="text-danger">Efetue o login para palpitar</h2>
+        <%}%>
+        </div>
 
 </body>
 <%@include file="WEB-INF/jspf/footer.jspf" %>
