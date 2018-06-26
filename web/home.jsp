@@ -3,7 +3,11 @@
     Created on : 24/06/2018, 20:05:58
     Author     : Janaina
 --%>
-
+<%@page import="java.util.ArrayList"%>
+<%@page import="br.com.fatecpg.poo.pj06.grupo06.db.Rank"%>
+<%
+    ArrayList<Rank> r = Rank.getRank();
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -57,8 +61,12 @@
               <div class="row">
                 <div class="thumbnail">
                     <div class="caption">
-                       <p>1. Maria</p> 
-                       <p>2. José</p>  
+                        <table class="table table-striped">
+                            <tr><th>#</th><th>Nome</th><th>Pontos</th></tr>
+                        <%for(int i=0; i<r.size(); i++){%>
+                            <tr><td><%=i+1%></td><td><%=r.get(i).getName()%></td><td><%=r.get(i).getPontuacao()%></td></tr>
+                       <%}%>
+                        </table>
                     </div>
                 </div>
             </div>
