@@ -49,7 +49,53 @@ CREATE TABLE JOGO(
 
 INSERT INTO JOGO VALUES(DEFAULT, '2018-06-14 12:00:00', 'Rússia', 5, 'Arábia Saudita', 0, 1); --Rússia 5 x 0 Arábia Saudita
 INSERT INTO JOGO VALUES(DEFAULT, '2018-06-15 09:00:00', 'Egito', 0, 'Uruguai', 1, 1); --Egito 0 x 1 Uruguai
-INSERT INTO JOGO VALUES(DEFAULT, '2018-06-30 15:00:00', 'Uruguai', -1, 'Portugal', -1, 4); --Oitavas de final, placar não definido (inserir como -1)
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-15 12:00:00', 'Marrocos', 0, 'Irã', 1, 1); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-15 15:00:00', 'Portugal', 3, 'Espanha', 3, 1); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-16 07:00:00', 'França', 2, 'Austrália', 1, 1); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-16 10:00:00', 'Argentina', 1, 'Islândia', 1, 1); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-16 13:00:00', 'Peru', 0, 'Dinamarca', 1, 1); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-16 16:00:00', 'Croácia', 2, 'Nigéria', 0, 1); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-17 09:00:00', 'Costa Rica', 0, 'Sérvia', 1, 1); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-17 12:00:00', 'Alemanha', 0, 'México', 1, 1); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-17 15:00:00', 'Brasil', 1, 'Suiça', 1, 1); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-18 09:00:00', 'Suécia', 1, 'Coréia do Sul', 0, 1); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-18 12:00:00', 'Bélgica', 3, 'Panamá', 0, 1); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-18 15:00:00', 'Tunísia', 1, 'Inglaterra', 2, 1); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-19 09:00:00', 'Colômbia', 1, 'Japão', 2, 1); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-19 12:00:00', 'Polônia', 1, 'Senegal', 2, 1); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-19 15:00:00', 'Rússia', 3, 'Egito', 1, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-20 09:00:00', 'Portugal', 1, 'Marrocos', 0, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-20 12:00:00', 'Uruguai', 1, 'Arábia Saudita', 0, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-20 15:00:00', 'Irã', 0, 'Espanha', 1, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-21 09:00:00', 'Dinamarca', 1, 'Austrália', 1, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-21 12:00:00', 'França', 1, 'Peru', 0, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-21 15:00:00', 'Argentina', 0, 'Croácia', 3, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-22 09:00:00', 'Brasil', 2, 'Costa Rica', 0, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-22 12:00:00', 'Nigéria', 2, 'Islândia', 0, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-22 15:00:00', 'Sérvia', 1, 'Suiça', 2, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-23 09:00:00', 'Bélgica', 5, 'Tunísia', 2, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-23 12:00:00', 'Coréia do Sul', 1, 'México', 2, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-23 15:00:00', 'Alemanha', 2, 'Suécia', 1, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-24 09:00:00', 'Inglaterra', 6, 'Panamá', 1, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-24 12:00:00', 'Japão', 2, 'Senegal', 2, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-24 15:00:00', 'Polônia', 0, 'Colômbia', 3, 2); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-25 11:00:00', 'Uruguai', 3, 'Rússia', 0, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-25 11:00:00', 'Arábia Saudita', 2, 'Egito', 1, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-25 15:00:00', 'Espanha', 2, 'Marrocos', 2, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-25 15:00:00', 'Irã', 1, 'Portugal', 1, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-26 11:00:00', 'Dinamarca', 0, 'França', 0, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-26 11:00:00', 'Austrália', 0, 'Peru', 2, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-26 15:00:00', 'Nigéria', 1, 'Argentina', 2, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-26 15:00:00', 'Islândia', 1, 'Croácia', 2, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-27 11:00:00', 'Coréia do Sul', -1, 'Alemanha', -1, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-27 11:00:00', 'México', -1, 'Suécia', -1, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-27 15:00:00', 'Sérvia', -1, 'Brasil', -1, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-27 15:00:00', 'Suiça', -1, 'Costa Rica', -1, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-28 11:00:00', 'Japão', -1, 'Polônia', -1, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-28 11:00:00', 'Senegal', -1, 'Colômbia', -1, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-28 15:00:00', 'Inglaterra', -1, 'Bélgica', -1, 3); 
+INSERT INTO JOGO VALUES(DEFAULT, '2018-06-28 15:00:00', 'Panamá', -1, 'Tunísia', -1, 3); 
+--INSERT INTO JOGO VALUES(DEFAULT, '2018-06-30 15:00:00', 'Uruguai', -1, 'Portugal', -1, 4); --Oitavas de final, placar não definido (inserir como -1)
 
 CREATE TABLE PALPITE(
     ID_USUARIO INT NOT NULL,

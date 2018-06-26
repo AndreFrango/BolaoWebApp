@@ -89,10 +89,10 @@
        <%if(numberOfRows==0){%>
        <h2 class="text-danger text-center">Os jogos desta fase ainda não foram definidos!</h2>
        <%}%>
-<%for(int i=1; i<=numberOfRows; i++){%>  
+<%for(int i=0; i<numberOfRows; i++){%>  
     <div class="row">
-    <%for (int j=1; j <= (i==numberOfRows&&lastRowCells>0?lastRowCells:4);j++){
-        Jogo jogo = listaJogos.get(i*j-1);
+    <%for (int j=0; j < (i==numberOfRows-1&&lastRowCells>0?lastRowCells:4);j++){
+        Jogo jogo = listaJogos.get(i*4+j);
     %>
 <center>
 <form>
