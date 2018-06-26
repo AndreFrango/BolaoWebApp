@@ -15,22 +15,22 @@ import java.util.ArrayList;
 //package br.com.fatecpg.parking.db;
 
 public class Rank {
-    private long id;
+    private int id;
     private String name;
     private int pontuacao;
     
-        public Rank(long id, String name, int pontuacao) {
+        public Rank(int id, String name, int pontuacao) {
         this.id = id;
         this.name = name;
         this.pontuacao = pontuacao;
 
     }
     
-      public long getId() {
+      public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -52,13 +52,13 @@ public class Rank {
     
     public static ArrayList<Rank> getRank()
             throws Exception{
-        String SQL ="SELECT ID_USUARIO,NOME,PONTUACAO FROM USUARIO";
+        String SQL ="SELECT ID_USUARIO,NOME,PONTUACAO FROM USUARIO where role <> 'admin' order by pontuacao, data_cadastro ";
         ArrayList<Rank> rank = new ArrayList<>();
         ArrayList<Object[]> list = DatabaseConnector.executeQuery(SQL, new Object[]{});
         for(int i=0;i<list.size();i++){
             Object row[] =  list.get(i);
             Rank r = new Rank(
-                      (Long)row[0]
+                      (int)row[0]
                     , (String) row[1]
                     , (int)row[2]);
             rank.add(r);
