@@ -17,12 +17,16 @@
             
             <h1>Bolão Copa do Mundo 2018</h1>
        	
-          <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Cadastro de Jogos</button>
+          <button type="button" class="btn btn-success btn-lg">Cadastro de Jogos</button>
           
-          <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Cadastro de Placar</button>
+          <button type="button" class="btn btn-success btn-lg">Cadastro de Placar</button>
+          
+          <button type="button" class="btn btn-success btn-lg"><a href="usuarios.jsp">Cadastro de Usuários</a></button>
         
         </center>
     </body>
      <%@include file="WEB-INF/jspf/footer.jspf" %>
 </html>
-<%@include file="WEB-INF/jspf/login.jspf" %>
+
+
+ 

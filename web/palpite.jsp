@@ -101,4 +101,3 @@
 </body>
 <%@include file="WEB-INF/jspf/footer.jspf" %>
 </html>
-<%@include file="WEB-INF/jspf/login.jspf" %>
