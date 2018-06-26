@@ -28,12 +28,18 @@
       <ul class="nav navbar-nav"> 
         <li><a href="home.jsp">Página Inicial</a></li>
         <li><a href="palpite.jsp">Palpites</a></li>
+         <%if(session.getAttribute("me.role").equals("admin")){%>
         <li><a href="admin.jsp">Área Administrativa</a></li> 
+         <%}%>
       </ul>
-     
+     <%if(session.getAttribute("me.login")!=null){%>
       <ul class="nav navbar-nav navbar-right">
-          <button type="button" name="login" id="login" class="btn btn-success btn-md" data-toggle="modal" data-target="#loginModal">ENTRAR</button>
+          <!--<button type="button" name="login" id="login" class="btn btn-success btn-md" data-toggle="modal" data-target="#loginModal">ENTRAR</button>-->
+          <form>
+              <button type="submit" name="logoffForm" class="btn btn-danger btn-md"/>Sair</button>
+          </form>
       </ul>
+      <%}%>
   </div>
 </nav>
 

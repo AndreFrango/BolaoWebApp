@@ -11,7 +11,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <title>Bolão</title>
     </head>
-    <%@include file="WEB-INF/jspf/header.jspf" %>
+    <%@include file="WEB-INF/jspf/cabecalho.jspf" %>
+    <%if(session.getAttribute("me.login")==null){%>
+    <center><h2>Efetue o login</h2></center>
+        <%}else{%>
     <body>
         <div class="container-fluid text-center">    
           <div class="row content">
@@ -30,7 +33,12 @@
 
            <!-- Centro -->
             <div class="col-sm-6 text-left"> 
-              <center><h1>Bolão Copa do Mundo 2018</h1></center>   
+               
+                        
+              <center>
+                  <h1><b>Seja bem vindo <%=session.getAttribute("me.nome")%>!</b></h1>
+                  <h2>Bolão Copa do Mundo 2018</h2>
+              </center>   
             </div>
 
             <!-- Lado direito -->
@@ -49,6 +57,7 @@
     </body>
 <%@include file="WEB-INF/jspf/footer.jspf" %>
 </html>
+ <%}%>
 <%@include file="WEB-INF/jspf/login.jspf" %>
 
    

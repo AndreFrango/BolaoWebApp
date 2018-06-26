@@ -11,14 +11,16 @@ public class Usuario {
     private String login;
     private int senha;
     private int pontuacao;
+    private String role;
 
-    public Usuario(int id, String nome, Timestamp dataCadastro, String login, int senha, int pontuacao) {
+    public Usuario(int id, String nome, Timestamp dataCadastro, String login, int senha, int pontuacao, String role) {
         this.id = id;
         this.nome = nome;
         this.dataCadastro = dataCadastro;
         this.login = login;
         this.senha = senha;
         this.pontuacao = pontuacao;
+        this.role = role;
     }
     
     public int getId() {
@@ -69,6 +71,15 @@ public class Usuario {
         this.pontuacao = pontuacao;
     }
     
+        public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    
     public static Usuario getUsuario(String login, String senha) throws Exception{
         String SQL = "select * from Usuario where login = ? and senha = ?";
         Object[] parameters = {login, senha.hashCode()};
@@ -77,8 +88,24 @@ public class Usuario {
             return null;
         } else{
             Object[] row = list.get(0);
-            Usuario u = new Usuario((int)row[0], (String)row[1], (Timestamp)row[2], (String)row[3], (int)row[4], (int)row[5]);
+            Usuario u = new Usuario((int)row[0], (String)row[1], (Timestamp)row[2], (String)row[3], (int)row[4], (int)row[5], (String)row[6]);
             return u;
         }
     }
+    
+    
+    
+    public static Usuario validarUsuario(String login, String senha) throws Exception{
+        String Query = "SELECT * FROM Usuario WHERE login = ? AND senha = ?";
+        ArrayList<Object[]> list = DatabaseConnector.executeQuery(Query, new Object[]{login, senha.hashCode()});
+        if(list.size()>0){
+            Object[] row = list.get(0);
+            Usuario u = new Usuario((int)row[0], (String)row[1], (Timestamp)row[2], (String)row[3], (int)row[4], (int)row[5], (String)row[6]);
+            return u;
+        }else{
+            return null;
+        }
+    }
+    
 }
+
