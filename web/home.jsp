@@ -24,8 +24,18 @@
               <h3><b>Regras</b></h3>
                 <div class="row">
                    <div class="thumbnail">
-                        <div class="caption">
-                            <p>1. É permitido palpitar apenas uma vez por partida;</p>       
+                        <div class="caption text-left">
+                            <p>1. Os palpites podem ser lançados até uma hora antes do início da partida;</p>       
+                            <p>2. Pontuação:</p>       
+                            <p>   Acertar o vencedor da partida/empate: 10 pontos</p>       
+                            <p>   Vencedor + placar de um dos times: 15 pontos</p>       
+                            <p>   Placar exato: 20 pontos</p>       
+                            <p>   Exemplo: Resultado: 2 x 1</p>       
+                            <p>   Palpite 1: 2 x 1 - 20 pontos</p>       
+                            <p>   Palpite 2: 2 x 0 - 15 pontos</p>       
+                            <p>   Palpite 3: 3 x 1 - 15 pontos</p>       
+                            <p>   Palpite 4: 0 x 1 -  0 pontos</p>       
+                            <p>   Palpite 5: 0 x 0 -  0 pontos</p>       
                         </div>
                     </div>
                 </div>
@@ -36,7 +46,7 @@
                
                         
               <center>
-                  <h1><b>Seja bem vindo <%=session.getAttribute("me.nome")%>!</b></h1>
+                  <h1><b>Seja bem vindo(a), <%=session.getAttribute("me.nome")%>!</b></h1>
                   <h2>Bolão Copa do Mundo 2018</h2>
               </center>   
             </div>
