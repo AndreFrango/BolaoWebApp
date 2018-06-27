@@ -25,13 +25,12 @@
         String role = request.getParameter("role");
         String login = request.getParameter("login");
         int senha = request.getParameter("senha").hashCode();
+        String data = request.getParameter("data");
+
+        Timestamp ts = Timestamp.valueOf(data);
+
         int pontuacao = Integer.parseInt(request.getParameter("pontuacao"));
-        
-        //rotina stack
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-        Date parsedDate = dateFormat.parse(request.getParameter("data"));
-        Timestamp data = new java.sql.Timestamp(parsedDate.getTime());
-        
+
       try{
            Usuario.addUsuario(nome, data, login, senha, pontuacao, role);
            response.sendRedirect(request.getRequestURI());
