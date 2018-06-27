@@ -107,4 +107,7 @@ public class Jogo {
         Object parameters[] = {/*idJogo,*/data,timeA,placarTimeA,timeB,placarTimeB,idRodada};
         DatabaseConnector.executeCommand(SQL, parameters);
     }
+    public static void updatePlacar (int idJogo, int placarA, int placarB) throws Exception {
+        DatabaseConnector.executeCommand("update jogo set placar_time_a=?, placar_time_b=? where id_jogo=?", new Object[]{placarA, placarB, idJogo});
+    }
 }
