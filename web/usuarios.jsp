@@ -47,7 +47,10 @@
         <title>Usuários</title>
     </head>
     <body>
-     <%@include file="WEB-INF/jspf/header.jspf" %>
+     <%@include file="WEB-INF/jspf/cabecalho.jspf" %>
+     <%if(session.getAttribute("me.login")==null){%>
+    <center><h2>Efetue o login</h2></center> <!-- Corrigir-->
+        <%}else{%>
        <h1>Usuários</h1>
         <fieldset>
           
@@ -100,3 +103,4 @@
         </table>
     </body>
 </html>
+ <%}%>

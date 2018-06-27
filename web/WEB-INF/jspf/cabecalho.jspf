@@ -39,7 +39,6 @@
 %>
 
 <%if(session.getAttribute("me.login")==null){%>
-
  <div class="panel panel-default">
         <div class="panel-body">
             <form method="post">          
@@ -61,4 +60,3 @@
 <%if(headerMessage!=null){%>
 <center><h3 style="background-color: red; color:white"><%=headerMessage%></h3></center>
 <%}%>
-<hr/>

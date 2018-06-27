@@ -23,7 +23,7 @@
           
           <button type="button" class="btn btn-success btn-lg">Cadastro de Placar</button>
           
-          <button type="button" class="btn btn-success btn-lg"><a style="text-decoration: none" href="usuarios.jsp">Cadastro de Usuários</a></button>
+          <button type="button" class="btn btn-success btn-lg"><a style="text-decoration: none; color: white" href="usuarios.jsp">Cadastro de Usuários</a></button>
         
         </center>
     </body>
