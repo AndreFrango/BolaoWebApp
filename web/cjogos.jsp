@@ -4,6 +4,7 @@
     Author     : André
 --%>
 
+<%@page import="java.util.HashMap"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="br.com.fatecpg.poo.pj06.grupo06.db.Jogo"%>
 
@@ -13,7 +14,22 @@
    ,"México","Nigéria", "Panamá","Peru","Polônia","Portugal","Rússia","Senegal","Sérvia","Suécia","Suiça","Tunísia","Uruguai"};
    
    String error = null;
-   
+   int idRodada=1;
+   if(request.getParameter("formIdrod")!= null){ 
+    //idRod = (request.getParameter("idrod")); 
+    idRodada=Integer.parseInt(request.getParameter("idrod"));
+    //response.sendRedirect(request.getRequestURI());
+    
+}    
+   HashMap<Integer,Integer> numeroJogosRodada = new HashMap(8);
+   numeroJogosRodada.put(1, 16);
+   numeroJogosRodada.put(2, 16);
+   numeroJogosRodada.put(3, 16);
+   numeroJogosRodada.put(4, 8);
+   numeroJogosRodada.put(5, 4);
+   numeroJogosRodada.put(6, 2);
+   numeroJogosRodada.put(7, 1);
+   numeroJogosRodada.put(8, 1);
 if(request.getParameter("formNewJogos")!=null){
         try{
             //String sid[] = request.getParameterValues("idj");
@@ -34,7 +50,7 @@ if(request.getParameter("formNewJogos")!=null){
                //System.out.println(dataHora);
                Timestamp ts = Timestamp.valueOf(dataHora);
                
-             Jogo.addJogos(ts, stimea[i],-1,stimeb[i] ,-1,4);
+             Jogo.addJogos(ts, stimea[i],-1,stimeb[i] ,-1,5);
            }
            // long id = Long.parseLong(request.getParameter("id"));
             //String model = request.getParameter("model");
@@ -65,15 +81,30 @@ if(request.getParameter("formNewJogos")!=null){
     <center><h2>Cadastro de Jogos</h2></center>
     <br/>
     <hr/>
+    <form method="post">
+        <fieldset>
+            <legend>Escolha a rodada</legend>
+            <select name="idrod">
+                <option  value="1">1</option>  
+                <option  value="2">2</option>  
+                <option  value="3">3</option>  
+                <option  value="4">4</option>  
+                <option  value="5">5</option>  
+                <option  value="6">6</option>  
+                <option  value="7">7</option>  
+                <option  value="8">8</option>  
+            </select>            
+        </fieldset>
+        <input type="submit" name="formIdrod" value="Escolher"/>
+    </form>
     <FORM METHOD="POST">
     <center><table border="1">
         <tr>
-            <th>N° JOGO</th><th>Time A</th><th>Time B</th><th>Data</th>            
+            <th>Time A</th><th>Time B</th><th>Data</th>            
         </tr>
         
-            <%for(int i = 49;i<=56;i++){%>
+        <%for(int i = 0;i<numeroJogosRodada.get(idRodada);i++){%>
             <tr>
-            <td><INPUT TYPE="text" NAME="idj" value="<%= i%>"></td>
               <td>
             <select name="timea">
                 <%for(int j = 0;j<32;j  ++){%> 
@@ -93,7 +124,7 @@ if(request.getParameter("formNewJogos")!=null){
             <%}%>
     </table>
         <input type="submit" name="formNewJogos" value="Adicionar"/>
-    </center>>
+    </center>
     </form>
             <%}%> <!--//else-->
     
