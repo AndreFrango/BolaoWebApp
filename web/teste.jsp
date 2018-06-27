@@ -9,10 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Enviado -Editar</title>
     </head>
     <body>
-        <h1>Enviado para BD(?)</h1>
+        <h1>Enviado para BD</h1>
         <p><a href="admin.jsp">Voltar</a></p><br/><br/>
     </body>
 </html>
