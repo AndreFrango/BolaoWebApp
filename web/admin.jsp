@@ -19,9 +19,10 @@
             
             <h1>Bolão Copa do Mundo 2018</h1>
        	
-          <button type="button" class="btn btn-success btn-lg">Cadastro de Jogos</button>
-          
           <button type="button" class="btn btn-success btn-lg"><a style="text-decoration: none; color: white" href="cjogos.jsp">Cadastro de Jogos</a></button>
+          
+          
+          <button type="button" class="btn btn-success btn-lg"><a style="text-decoration: none; color: white" href="">Cadastro de Placar</a></button>
           
           <button type="button" class="btn btn-success btn-lg"><a style="text-decoration: none; color: white" href="usuarios.jsp">Cadastro de Usuários</a></button>
         
