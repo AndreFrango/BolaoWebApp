@@ -26,7 +26,7 @@ if(request.getParameter("formNewJogos")!=null){
             int cont = sid.length;
             int[] transfer = new int[cont];            
             for(int j=0;j<sid.length;j++){
-                transfer[j]= Integer.parseInt(sid[j]);
+                transfer[j] =Integer.valueOf(sid[j]);
             }
             
            for(int i=0;i<sid.length;i++){
@@ -70,7 +70,7 @@ if(request.getParameter("formNewJogos")!=null){
         
             <%for(int i = 49;i<=56;i++){%>
             <tr>
-            <td><INPUT TYPE="text" NAME="idj" value="<%= i%>" disabled></td>
+            <td><INPUT TYPE="text" NAME="idj" value="<%= i%>"></td>
               <td>
             <select name="timea">
                 <%for(int j = 0;j<32;j  ++){%> 
