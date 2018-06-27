@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <%
    String error = null;
-    if(request.getParameter("formDeleteUser")!= null){
+    if(request.getParameter("formDeleteJogo")!= null){
      try{
          int id = Integer.parseInt(request.getParameter("id"));
          Jogo.removeJogo(id);
@@ -31,28 +31,29 @@
      <%@include file="WEB-INF/jspf/cabecalho.jspf" %>
      <%if(session.getAttribute("me.login")==null){%>
     <center><h2>Efetue o login</h2></center> <!-- Corrigir-->
-        <%}else{%>
-       
+        <%}else{%>       
        <center><table border="1">
         <tr>
             <th>Rodada</th><th>N° JOGO</th><th>Time A</th><th>Time B</th><th>Data</th>            
         </tr>
-        <% for (Jogo j: Jogo.getJogosList()) {%>
+        <% for (Jogo j: Jogo.getJogos()) {%>
                 <tr>   
-                    <td><%=%></td>
-                    <td><%=u.getNome()%></td>
-                    <td><%=u.getDataCadastro()%></td>
-                    <td><%=u.getLogin()%></td>
-                     <td><%=u.getRole()%></td>
+                    
+                    <td><%=j.getIdRodada() %></td>
+                    <td><%=j.getIdJogo() %></td>
+                    <td><%=j.getTimeA() %></td>
+                     <td><%=j.getTimeB()%></td>
+                     <td><%=j.getData() %></td>
+                     
                     <td>
                         <form>
-                            <input type="hidden" name="id" value="<%=u.getId()%>" />
-                            <input type="submit" name="formDeleteUser" value="Remover" />
+                            <input type="hidden" name="id" value="<%=j.getIdJogo() %>" />
+                            <input type="submit" name="formDeleteJogo" value="Excluir" />
                             
                         </form>
                     </td>
                 </tr>
             <% } %>
-        </table>
+        </table></center>
     </body>
 </html>
