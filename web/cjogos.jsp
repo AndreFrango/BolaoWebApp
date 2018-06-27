@@ -14,7 +14,7 @@
 
 //ArrayList<Integer> transfer = new ArrayList<Integer>();
    String error = null;
-   String result = "";
+   //String result = "";
 if(request.getParameter("formNewJogos")!=null){
         try{
             String sid[] = request.getParameterValues("idj");
