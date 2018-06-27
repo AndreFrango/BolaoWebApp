@@ -4,6 +4,7 @@
     Author     : André
 --%>
 
+<%@page import="java.sql.Timestamp"%>
 <%@page import="br.com.fatecpg.poo.pj06.grupo06.db.Jogo"%>
 
 <%
@@ -17,20 +18,20 @@
    //String result = "";
 if(request.getParameter("formNewJogos")!=null){
         try{
-            String sid[] = request.getParameterValues("idj");
+            //String sid[] = request.getParameterValues("idj");
             String stimea[] = request.getParameterValues("timea");
             String stimeb[] = request.getParameterValues("timeb");
             String sdata[] = request.getParameterValues("data");
             
             //Gambis
-            int cont = sid.length;
+            /*int cont = sid.length;
             int[] transfer = new int[cont];            
             for(int j=0;j<sid.length;j++){
                 transfer[j] =Integer.valueOf(sid[j]);
-            }
+            }*/
             
-           for(int i=0;i<sid.length;i++){
-             Jogo.addJogos(transfer[i], sdata[i], stimea[i],-1,stimeb[i] ,-1,4);
+           for(int i=0;i<stimea.length;i++){
+             Jogo.addJogos(Timestamp.valueOf(sdata[i]), stimea[i],-1,stimeb[i] ,-1,4);
            }
            // long id = Long.parseLong(request.getParameter("id"));
             //String model = request.getParameter("model");
