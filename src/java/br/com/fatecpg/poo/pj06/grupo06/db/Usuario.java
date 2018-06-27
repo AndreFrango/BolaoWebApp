@@ -136,9 +136,11 @@ public class Usuario {
                 + ",  ?"
                 + ",  ?"
                 + ",  ?"
+                + ",  ?"
                 + ")";
         Object parameters[] = {nome, data, login, senha, pontuacao, role};
         DatabaseConnector.executeCommand(SQL, parameters);
+        
     
     }
     

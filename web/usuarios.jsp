@@ -8,7 +8,7 @@
 
 <%
     LocalDateTime now = LocalDateTime.now();
-   
+    Timestamp tss = Timestamp.valueOf(now);
     String error = null;
     if(request.getParameter("formDeleteUser")!= null){
      try{
@@ -46,10 +46,11 @@
     </head>
     <body>
      <%@include file="WEB-INF/jspf/cabecalho.jspf" %>
-     <%if(session.getAttribute("me.login")==null){%>
-    <center><h2>Efetue o login</h2></center> <!-- Corrigir-->
+     <%if(session.getAttribute("me.login")== null){%>
+    <center><h2>Efetue o login.</h2></center> <!-- Corrigir-->
+        <%}else if (session.getAttribute("me.role") == "torcedor"){%>
+        <center><h2>Você não tem permissão para acessar a página!</h2></center>
         <%}else{%>
-       <h1>Usuários</h1>
         <fieldset>
           
             <div class="panel panel-default">
@@ -57,7 +58,7 @@
                      <form method="post">          
                             <b>Nome</b><input type="text" name="nome" class="form-control"/> 
                             <b>Senha</b><input type="password" name="senha" class="form-control"/> <br/>
-                            <b>Data Cadastro</b><input type="text" name="data" value="<%=now%>" class="form-control" readonly/> <br/>
+                            <b>Data Cadastro</b><input type="text" name="data" value="<%=tss%>" class="form-control" readonly/> <br/>
                             <b>Login</b><input type="text" name="login" class="form-control"/> <br/>
                             <b>Role</b> <select name="role">
                                 <option value="admin">admin</option>
@@ -81,6 +82,7 @@
                 <th>Login</th>
                 <th>Papel</th>
                 <th>Ação</th>
+                
             </tr>
             <% for (Usuario u: Usuario.getUsuarios()) {%>
                 <tr>   
