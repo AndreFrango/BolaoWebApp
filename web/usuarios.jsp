@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDateTime"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.util.Date"%>
@@ -6,7 +7,8 @@
 <!DOCTYPE html>
 
 <%
-     
+    LocalDateTime now = LocalDateTime.now();
+   
     String error = null;
     if(request.getParameter("formDeleteUser")!= null){
      try{
@@ -16,24 +18,21 @@
      }
      catch(Exception e){   
         error = e.getMessage();
-    }
-        
+        }
     }
 
     if(request.getParameter("formNovoUsuario")!= null){
         String nome = request.getParameter("nome");
         String role = request.getParameter("role");
         String login = request.getParameter("login");
-        int senha = request.getParameter("senha").hashCode();
+        int senha = request.getParameter("senha").hashCode();      
         String data = request.getParameter("data");
-
-        Timestamp ts = Timestamp.valueOf(data);
-
         int pontuacao = Integer.parseInt(request.getParameter("pontuacao"));
 
       try{
-           Usuario.addUsuario(nome, data, login, senha, pontuacao, role);
+           Usuario.addUsuario(nome, Timestamp.valueOf(data), login, senha, pontuacao, role);
            response.sendRedirect(request.getRequestURI());
+           
       }catch(Exception e){
           error = e.getMessage();
       } 
@@ -58,7 +57,7 @@
                      <form method="post">          
                             <b>Nome</b><input type="text" name="nome" class="form-control"/> 
                             <b>Senha</b><input type="password" name="senha" class="form-control"/> <br/>
-                            <b>Data Cadastro</b><input type="text" name="data"  class="form-control"/> <br/>
+                            <b>Data Cadastro</b><input type="text" name="data" value="<%=now%>" class="form-control" readonly/> <br/>
                             <b>Login</b><input type="text" name="login" class="form-control"/> <br/>
                             <b>Role</b> <select name="role">
                                 <option value="admin">admin</option>

@@ -116,22 +116,21 @@ public class Usuario {
     
     
     
-    public static Usuario validarUsuario(String login, String senha) throws Exception{
-        String Query = "SELECT * FROM Usuario WHERE login = ? AND senha = ?";
-        ArrayList<Object[]> list = DatabaseConnector.executeQuery(Query, new Object[]{login, senha.hashCode()});
-        if(list.size()>0){
-            Object[] row = list.get(0);
-            Usuario u = new Usuario((int)row[0], (String)row[1], (Timestamp)row[2], (String)row[3], (int)row[4], (int)row[5], (String)row[6]);
-            return u;
-        }else{
-            return null;
-        }
-    }
+//    public static Usuario validarUsuario(String login, String senha) throws Exception{
+//        String Query = "SELECT * FROM Usuario WHERE login = ? AND senha = ?";
+//        ArrayList<Object[]> list = DatabaseConnector.executeQuery(Query, new Object[]{login, senha.hashCode()});
+//        if(list.size()>0){
+//            Object[] row = list.get(0);
+//            Usuario u = new Usuario((int)row[0], (String)row[1], (Timestamp)row[2], (String)row[3], (int)row[4], (int)row[5], (String)row[6]);
+//            return u;
+//        }else{
+//            return null;
+//        }
+//    }
     
      public static void addUsuario(String nome, Timestamp data, String login, int senha, int pontuacao, String role) throws Exception{
-        String SQL = "INSERT INTO VALUES("
+        String SQL = "INSERT INTO USUARIO VALUES("
                 + "default"
-                + ",  VARCHAR(DATE(?))"
                 + ",  ?"
                 + ",  ?"
                 + ",  ?"
