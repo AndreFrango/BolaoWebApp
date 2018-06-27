@@ -149,6 +149,7 @@ public class Usuario {
         DatabaseConnector.executeCommand(SQL, parameters);
     
     }
+<<<<<<< HEAD
      
     public static void alteraUsuario(int id, String role) throws Exception{
         DatabaseConnector.executeCommand(
@@ -156,5 +157,22 @@ public class Usuario {
                 new Object[]{id, role});
     }
     
+=======
+    public static Usuario getUsuarioPorId(int idUsuario) throws Exception{
+        String SQL = "select * from Usuario where ID_USUARIO=?";
+        Object[] parameters = {idUsuario};
+        ArrayList<Object[]> list = DatabaseConnector.executeQuery(SQL, parameters);
+        if (list.isEmpty()){
+            return null;
+        } else{
+            Object[] row = list.get(0);
+            Usuario u = new Usuario((int)row[0], (String)row[1], (Timestamp)row[2], (String)row[3], (int)row[4], (int)row[5], (String)row[6]);
+            return u;
+        }
+    }
+    public static void updatePontuacao(int idUsuario, int pontos) throws Exception{
+        DatabaseConnector.executeCommand("update usuario set pontuacao=? where id_usuario=?", new Object[]{pontos, idUsuario});
+    }
+>>>>>>> 95b85087866f0ffb8566475c436cb28ee2128d93
 }
 

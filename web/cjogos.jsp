@@ -31,7 +31,8 @@
    numeroJogosRodada.put(7, 1);
    numeroJogosRodada.put(8, 1);
 if(request.getParameter("formNewJogos")!=null){
-        try{
+    idRodada=Integer.parseInt(request.getParameter("idRodada"));
+    try{
             //String sid[] = request.getParameterValues("idj");
             String stimea[] = request.getParameterValues("timea");
             String stimeb[] = request.getParameterValues("timeb");
@@ -50,14 +51,14 @@ if(request.getParameter("formNewJogos")!=null){
                //System.out.println(dataHora);
                Timestamp ts = Timestamp.valueOf(dataHora);
                
-             Jogo.addJogos(ts, stimea[i],-1,stimeb[i] ,-1,5);
+             Jogo.addJogos(ts, stimea[i],-1,stimeb[i] ,-1,idRodada);
            }
            // long id = Long.parseLong(request.getParameter("id"));
             //String model = request.getParameter("model");
             //String plate = request.getParameter("plate");
             //Period.addPeriod(model, plate);
             
-            response.sendRedirect("teste.jsp");
+            //response.sendRedirect("teste.jsp");
           //response.sendRedirect(request.getRequestURI());
         } catch(Exception e){
             error = e.getMessage();
@@ -123,7 +124,8 @@ if(request.getParameter("formNewJogos")!=null){
         </tr>
             <%}%>
     </table>
-        <input type="submit" name="formNewJogos" value="Adicionar"/>
+    <input type="hidden" name="idRodada" value="<%=idRodada%>"   />
+    <input type="submit" name="formNewJogos" value="Adicionar"/>
     </center>
     </form>
             <%}%> <!--//else-->
