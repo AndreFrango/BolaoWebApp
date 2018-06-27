@@ -116,17 +116,17 @@ public class Usuario {
     
     
     
-//    public static Usuario validarUsuario(String login, String senha) throws Exception{
-//        String Query = "SELECT * FROM Usuario WHERE login = ? AND senha = ?";
-//        ArrayList<Object[]> list = DatabaseConnector.executeQuery(Query, new Object[]{login, senha.hashCode()});
-//        if(list.size()>0){
-//            Object[] row = list.get(0);
-//            Usuario u = new Usuario((int)row[0], (String)row[1], (Timestamp)row[2], (String)row[3], (int)row[4], (int)row[5], (String)row[6]);
-//            return u;
-//        }else{
-//            return null;
-//        }
-//    }
+    public static Usuario validarUsuario(String login, String senha) throws Exception{
+        String Query = "SELECT * FROM Usuario WHERE login = ? AND senha = ?";
+        ArrayList<Object[]> list = DatabaseConnector.executeQuery(Query, new Object[]{login, senha.hashCode()});
+        if(list.size()>0){
+            Object[] row = list.get(0);
+            Usuario u = new Usuario((int)row[0], (String)row[1], (Timestamp)row[2], (String)row[3], (int)row[4], (int)row[5], (String)row[6]);
+            return u;
+        }else{
+            return null;
+        }
+    }
     
      public static void addUsuario(String nome, Timestamp data, String login, int senha, int pontuacao, String role) throws Exception{
         String SQL = "INSERT INTO USUARIO VALUES("
@@ -148,6 +148,20 @@ public class Usuario {
         DatabaseConnector.executeCommand(SQL, parameters);
     
     }
-    
+    public static Usuario getUsuarioPorId(int idUsuario) throws Exception{
+        String SQL = "select * from Usuario where ID_USUARIO=?";
+        Object[] parameters = {idUsuario};
+        ArrayList<Object[]> list = DatabaseConnector.executeQuery(SQL, parameters);
+        if (list.isEmpty()){
+            return null;
+        } else{
+            Object[] row = list.get(0);
+            Usuario u = new Usuario((int)row[0], (String)row[1], (Timestamp)row[2], (String)row[3], (int)row[4], (int)row[5], (String)row[6]);
+            return u;
+        }
+    }
+    public static void updatePontuacao(int idUsuario, int pontos) throws Exception{
+        DatabaseConnector.executeCommand("update usuario set pontuacao=? where id_usuario=?", new Object[]{pontos, idUsuario});
+    }
 }
 

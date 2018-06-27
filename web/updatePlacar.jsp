@@ -9,7 +9,31 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if(request.getParameter("subResultado")!=null){
-        Jogo.updatePlacar(Integer.parseInt(request.getParameter("idJogo")), Integer.parseInt(request.getParameter("placarA")), Integer.parseInt(request.getParameter("placarB")));
+        int idJogo = Integer.parseInt(request.getParameter("idJogo"));
+        int placarA = Integer.parseInt(request.getParameter("placarA"));
+        int placarB = Integer.parseInt(request.getParameter("placarB"));
+        Jogo.updatePlacar(idJogo, placarA, placarB);
+        ArrayList<Palpite> palpitesDoJogo = Palpite.getPalpitesPorJogo(Integer.parseInt(request.getParameter("idJogo")));
+        for(Palpite p:palpitesDoJogo){
+            Usuario u = Usuario.getUsuarioPorId(p.getIdUsuario());
+            int palpiteA = p.getPalpiteTimeA();
+            int palpiteB = p.getPalpiteTimeB();
+            int pontos = 0;
+            if ((palpiteA>palpiteB&&placarA>placarB)||(palpiteA==palpiteB&&placarA==placarB)||(palpiteA<palpiteB&&placarA<placarB)){
+                pontos=10;
+                if (palpiteA==placarA){
+                    pontos+=5;
+                }
+                if (palpiteB==placarB){
+                    pontos+=5;
+                }
+            }
+            u.setPontuacao(u.getPontuacao()-p.getPontos());
+            p.setPontos(pontos);
+            u.setPontuacao(u.getPontuacao()+pontos);
+            Usuario.updatePontuacao(u.getId(), u.getPontuacao());
+            Palpite.atualizarPontos(u.getId(), idJogo, p.getPontos());
+        }
     }
     int numberOfRows = 0;
     int lastRowCells = 0;
@@ -98,7 +122,7 @@
             <img src="<%=times.get(jogo.getTimeA())%>" alt="...">
             <div class="caption">
                <center><h4><%=jogo.getTimeA()%></h4>
-                   <input type="number" name="placarA" min="0" step="1" value='<%=jogo.getPlacarTimeA()>-1?jogo.getPlacarTimeA():""%>' /></center>
+                   <input type="number" name="placarA" min="0" step="1" value="<%=jogo.getPlacarTimeA()>-1?jogo.getPlacarTimeA():""%>" /></center>
             </div>
                 <h4>X</h4>
             <img src="<%=times.get(jogo.getTimeB())%>" alt=""/>

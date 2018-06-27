@@ -21,7 +21,7 @@
        	
           <button type="button" class="btn btn-success btn-lg"><a style="text-decoration: none; color: white" href="cjogos.jsp">Cadastro de Jogos</a></button>
           
-          <button type="button" class="btn btn-success btn-lg"><a style="text-decoration: none; color: white" href="">Cadastro de Placar</a></button>
+          <button type="button" class="btn btn-success btn-lg"><a style="text-decoration: none; color: white" href="updatePlacar.jsp">Cadastro de Placar</a></button>
           
           <button type="button" class="btn btn-success btn-lg"><a style="text-decoration: none; color: white" href="usuarios.jsp">Cadastro de Usuários</a></button>
         

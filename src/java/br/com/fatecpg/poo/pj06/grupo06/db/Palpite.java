@@ -82,4 +82,18 @@ public class Palpite {
         DatabaseConnector.executeCommand("update palpite set pontos=? where id_usuario=? and id_jogo=?", new Object[]{pontos, idUsuario, idJogo});
     }
     
+    public static ArrayList<Palpite> getPalpitesPorJogo(int idJogo) throws Exception{
+        ArrayList<Object[]> list = DatabaseConnector.executeQuery("select * from palpite where ID_JOGO=?", new Object[]{idJogo});
+        ArrayList<Palpite> palpites = new ArrayList<>();
+        if (list.isEmpty()){
+            return null;
+        } else{
+            for (int i=0;i<list.size();i++){
+                Object[] row=list.get(0);
+                Palpite p = new Palpite((int)row[0], (int)row[1], (int)row[2], (int)row[3], (int)row[4]);
+                palpites.add(p);
+            }
+            return palpites;
+        }
+    }
 }
