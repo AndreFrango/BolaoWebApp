@@ -128,10 +128,10 @@ public class Usuario {
         }
     }
     
-     public static void addUsuario(String nome, String data, String login, int senha, int pontuacao, String role) throws Exception{
+     public static void addUsuario(String nome, Timestamp data, String login, int senha, int pontuacao, String role) throws Exception{
         String SQL = "INSERT INTO VALUES("
                 + "default"
-                + ",  ?"
+                + ",  VARCHAR(DATE(?))"
                 + ",  ?"
                 + ",  ?"
                 + ",  ?"
@@ -142,8 +142,7 @@ public class Usuario {
         DatabaseConnector.executeCommand(SQL, parameters);
     
     }
-     
-     
+    
      public static void removeUsuario(int id) throws Exception{
         String SQL = "DELETE FROM USUARIO WHERE ID = ? " ;              
         Object parameters[] = {id};

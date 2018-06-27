@@ -1,10 +1,12 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.sql.Timestamp"%>
 <%@page import="java.util.Date"%>
 <%@page import="br.com.fatecpg.poo.pj06.grupo06.db.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <%
-  
+     
     String error = null;
     if(request.getParameter("formDeleteUser")!= null){
      try{
@@ -19,13 +21,17 @@
     }
 
     if(request.getParameter("formNovoUsuario")!= null){
-      String nome = request.getParameter("nome");
-      String role = request.getParameter("role");
-      String login = request.getParameter("login");
-      int senha = request.getParameter("senha").hashCode();
-      int pontuacao = Integer.parseInt(request.getParameter("pontuacao"));
-      String data =  request.getParameter("data");
-      
+        String nome = request.getParameter("nome");
+        String role = request.getParameter("role");
+        String login = request.getParameter("login");
+        int senha = request.getParameter("senha").hashCode();
+        int pontuacao = Integer.parseInt(request.getParameter("pontuacao"));
+        
+        //rotina stack
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+        Date parsedDate = dateFormat.parse(request.getParameter("data"));
+        Timestamp data = new java.sql.Timestamp(parsedDate.getTime());
+        
       try{
            Usuario.addUsuario(nome, data, login, senha, pontuacao, role);
            response.sendRedirect(request.getRequestURI());
@@ -50,7 +56,7 @@
                      <form method="post">          
                             <b>Nome</b><input type="text" name="nome" class="form-control"/> 
                             <b>Senha</b><input type="password" name="senha" class="form-control"/> <br/>
-                            <b>Data Cadastro</b><input type="date" name="data" class="form-control"/> <br/>
+                            <b>Data Cadastro</b><input type="text" name="data"  class="form-control"/> <br/>
                             <b>Login</b><input type="text" name="login" class="form-control"/> <br/>
                             <b>Role</b> <select name="role">
                                 <option value="admin">admin</option>
