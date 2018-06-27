@@ -12,10 +12,8 @@
    ,"Costa Rica","Croácia","Dinamarca","Egito","Espanha","França", "Inglaterra","Irã","Islândia","Japão","Marrocos"
    ,"México","Nigéria", "Panamá","Peru","Polônia","Portugal","Rússia","Senegal","Sérvia","Suécia","Suiça","Tunísia","Uruguai"};
    
-
-//ArrayList<Integer> transfer = new ArrayList<Integer>();
    String error = null;
-   //String result = "";
+   
 if(request.getParameter("formNewJogos")!=null){
         try{
             //String sid[] = request.getParameterValues("idj");
@@ -49,7 +47,6 @@ if(request.getParameter("formNewJogos")!=null){
             error = e.getMessage();
         }
     }
-
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -97,8 +94,9 @@ if(request.getParameter("formNewJogos")!=null){
     </table>
         <input type="submit" name="formNewJogos" value="Adicionar"/>
     </center>>
-            <%}%> <!--//else-->
     </form>
+            <%}%> <!--//else-->
+    
         
     <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
