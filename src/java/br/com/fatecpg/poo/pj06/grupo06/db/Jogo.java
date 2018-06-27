@@ -107,6 +107,35 @@ public class Jogo {
         Object parameters[] = {/*idJogo,*/data,timeA,placarTimeA,timeB,placarTimeB,idRodada};
         DatabaseConnector.executeCommand(SQL, parameters);
     }
+    
+    public static void removeJogo(int id)
+            throws Exception{
+        String SQL = "DELETE FROM JOGO WHERE ID =?";
+        Object parameters[] = {id};
+        DatabaseConnector.executeCommand(SQL, parameters);
+     }
+    
+    public static ArrayList<Jogo> getJogos()
+            throws Exception{
+        String SQL ="SELECT * FROM JOGO";
+        ArrayList<Jogo> Jogos = new ArrayList<>();
+        ArrayList<Object[]> list = DatabaseConnector.executeQuery(SQL, new Object[]{});
+        for(int i=0;i<list.size();i++){
+            Object row[] =  list.get(i);
+            Jogo j = new Jogo(
+                    (int)row[0]
+                    , (Timestamp) row[1]
+                    , (String) row[2]
+                    , (int) row[3]
+                    , (String) row[4]
+                    , (int) row[5]
+                    , (int) row[6]);                    
+            Jogos.add(j);
+        }
+            return Jogos;
+        
+    }
+    
     public static void updatePlacar (int idJogo, int placarA, int placarB) throws Exception {
         DatabaseConnector.executeCommand("update jogo set placar_time_a=?, placar_time_b=? where id_jogo=?", new Object[]{placarA, placarB, idJogo});
     }
