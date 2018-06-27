@@ -22,6 +22,7 @@ if(request.getParameter("formNewJogos")!=null){
             String stimea[] = request.getParameterValues("timea");
             String stimeb[] = request.getParameterValues("timeb");
             String sdata[] = request.getParameterValues("data");
+            String shora[] = request.getParameterValues("hora");
             
             //Gambis
             /*int cont = sid.length;
@@ -31,7 +32,11 @@ if(request.getParameter("formNewJogos")!=null){
             }*/
             
            for(int i=0;i<stimea.length;i++){
-             Jogo.addJogos(Timestamp.valueOf(sdata[i]), stimea[i],-1,stimeb[i] ,-1,4);
+               String dataHora = sdata[i]+" "+shora[i]+":00";
+               //System.out.println(dataHora);
+               Timestamp ts = Timestamp.valueOf(dataHora);
+               
+             Jogo.addJogos(ts, stimea[i],-1,stimeb[i] ,-1,4);
            }
            // long id = Long.parseLong(request.getParameter("id"));
             //String model = request.getParameter("model");
@@ -86,7 +91,7 @@ if(request.getParameter("formNewJogos")!=null){
                          <%}%>
                 </select>
                  </td>
-             <td><INPUT TYPE="text" NAME="data"></td>
+             <td><INPUT TYPE="date" NAME="data"/><input type="time" name="hora"/></td>
         </tr>
             <%}%>
     </table>
