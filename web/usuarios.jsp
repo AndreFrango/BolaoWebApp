@@ -37,6 +37,12 @@
           error = e.getMessage();
       } 
   }
+    
+  //if(request.getParameter("formUpdateUser")!= null){
+      
+  //}}
+  
+
 %>
 
 <html>
@@ -60,10 +66,14 @@
                             <b>Senha</b><input type="password" name="senha" class="form-control"/> <br/>
                             <b>Data Cadastro</b><input type="text" name="data" value="<%=tss%>" class="form-control" readonly/> <br/>
                             <b>Login</b><input type="text" name="login" class="form-control"/> <br/>
+                            
+                           
                             <b>Role</b> <select name="role">
                                 <option value="admin">admin</option>
                                 <option value="torcedor">torcedor</option>
-                            </select><br/>
+                            </select>
+                             
+                            <br/>
                             <b>Pontuação</b><input type="text" name="pontuacao" class="form-control"/> <br/>
                             
                         <button type="submit" name="formNovoUsuario" class="btn btn-warning"/> Cadastrar</button>  
@@ -73,8 +83,8 @@
        
         </fieldset>
        
-       
-        <table border="1">            
+        <center>
+        <table border="1" class="table bordered">            
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
@@ -95,12 +105,13 @@
                         <form>
                             <input type="hidden" name="id" value="<%=u.getId()%>" />
                             <input type="submit" name="formDeleteUser" value="Remover" />
-                            
+                            <!--<input type="submit" name="formUpdateUser" value="Alterar" />  -->
                         </form>
                     </td>
                 </tr>
             <% } %>
         </table>
+        </center>
     </body>
 </html>
  <%}%>
