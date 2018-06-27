@@ -34,7 +34,7 @@
         session.removeAttribute("me.nome");
         session.removeAttribute("me.login");
         session.removeAttribute("me.senha");
-        response.sendRedirect(request.getRequestURI());
+        response.sendRedirect("");
     }
 %>
 
