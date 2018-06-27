@@ -91,4 +91,20 @@ public class Jogo {
         }
         return jogos;
     }
+    
+    public static void addJogos(int idJogo,String data,String timeA, int placarTimeA,String timeB, int placarTimeB
+            ,int idRodada)
+            throws Exception{
+        String SQL = "INSERT INTO JOGO VALUES("
+                +", ?"
+                +", VARCHAR(DATE(?))"
+                +", ?"  //timeA
+                +", ?"  //TimeAPlacar
+                +", ?"  //TimeB
+                +", ?"  //TimeBPlacar
+                +", ?"  //teste
+                + ")";
+        Object parameters[] = {idJogo,data,timeA,placarTimeA,timeB,placarTimeB,idRodada};
+        DatabaseConnector.executeCommand(SQL, parameters);
+    }
 }
